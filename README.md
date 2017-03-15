@@ -1,12 +1,12 @@
-#Keynote David Beazley - Topics of Interest (Python Asyncio)
+# Keynote David Beazley - Topics of Interest (Python Asyncio)
 
 Those example code was original from Python Brasil 2015 Keynote. It's all about whether interface of asyncio is necessary or not.
 
-Source: ![Keynote David Beazley - Topics of Interest (Python Asyncio)](https://www.youtube.com/watch?v=ZzfHjytDceU)
+Source: [Keynote David Beazley - Topics of Interest (Python Asyncio)](https://www.youtube.com/watch?v=ZzfHjytDceU)
 
 ---
 
-##Background Knowledge
+## Background Knowledge
 
 1.yield
 
@@ -68,38 +68,48 @@ Source: ![Keynote David Beazley - Topics of Interest (Python Asyncio)](https://w
 
 ---
 
-##echo server
+## Echo server
 
-    - aecho.py: asyncio + interface
-    - mecho.py: asyncio with your own interface - myasyncio.py
-    - gecho.py: gevent
+Here are three echo servers:
+
+- aecho.py: asyncio + interface
+- mecho.py: asyncio with your own interface - myasyncio.py
+- gecho.py: gevent
+
+## Run echo server
 
     *Must install requirement.txt while using gecho.py
     $ pip install -r requirement.txt
 
-    > Terminal 1
+    > Terminal 1: Run server first
     $ python [aecho.py|mecho.py|gecho.py]
     
-    > Terminal 2
+    > Terminal 2: Connect to server by netcat
     $ nc localhost 50000
 
-    > Terminal 1
+    > Terminal 1: Check the reaction of server
     Connection from:  ('127.0.0.1', XXXXX)
 
-    > Terminal 2
+    > Terminal 2: Check the function of echo server
     asd
     Got: asd
+    Ctrl+C
+    
+    > Terminal 1: Check the reaction of server
+    Connection closed
 
-##Benchmark of echo server
+## Run benchmark
 
-    > Terminal 1
+    > Terminal 1: Run server first
     $ python [aecho.py|mecho.py|gecho.py]
 
-    > Terminal 2
+    > Terminal 2: Run benchmark
     $ python bench.py
 
-    - aecho.py: (12638.540409225803, 'messages/sec')
-    - mecho.py: (19400.764281054424, 'messages/sec')
-    - gecho.py: (21307.778045333405, 'messages/sec') 
+## Result of benchmark
 
-    gevent had the best performance. However, asyncio with its interface had the worst performance.
+- aecho.py: (12638.540409225803, 'messages/sec')
+- mecho.py: (19400.764281054424, 'messages/sec')
+- gecho.py: (21307.778045333405, 'messages/sec') 
+
+gevent had the best performance. However, asyncio with its interface had the worst performance.
